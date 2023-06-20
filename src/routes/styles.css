@@ -2,9 +2,9 @@
 
 /* SHELL ---------------------------------------- */
 html {
-  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-    'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 body {
@@ -17,7 +17,6 @@ body {
 h1,
 h2,
 h3 {
-  color: white;
   margin: 0;
 }
 
@@ -182,7 +181,7 @@ button.button-small {
 .icon:before {
   width: 18px;
   height: 18px;
-  content: '';
+  content: "";
   display: inline-block;
   margin-right: 20px;
   position: relative;
@@ -201,13 +200,75 @@ button.button-small {
   background-image: url("data:image/svg+xml,%3Csvg fill='%23ffffff' width='20px' height='20px' viewBox='0 0 256 256' id='Flat' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M246.40381 143.19434a4.00061 4.00061 0 0 1-5.60108-.7959A55.57857 55.57857 0 0 0 196 120a4 4 0 0 1 0-8 28 28 0 1 0-27.50732-33.26074 4.00013 4.00013 0 0 1-7.85987-1.49219 36.00191 36.00191 0 1 1 54.06494 37.50513 63.58068 63.58068 0 0 1 32.50147 22.84155A3.99993 3.99993 0 0 1 246.40381 143.19434Zm-57.24268 71.05273a3.9998 3.9998 0 1 1-7.1914 3.50391 60.02582 60.02582 0 0 0-107.93946 0 3.9998 3.9998 0 1 1-7.1914-3.50391 67.56008 67.56008 0 0 1 40.90625-35.20581 44 44 0 1 1 40.50976 0A67.56139 67.56139 0 0 1 189.16113 214.24707ZM128 176a36 36 0 1 0-36-36A36.04061 36.04061 0 0 0 128 176ZM60 112A28 28 0 1 1 87.50732 78.73828a3.99989 3.99989 0 1 0 7.85938-1.49219A36.00177 36.00177 0 1 0 41.30225 114.7522 63.5829 63.5829 0 0 0 8.79883 137.5957a4 4 0 1 0 6.39648 4.80469A55.58072 55.58072 0 0 1 60 120a4 4 0 0 0 0-8Z'/%3E%3C/svg%3E");
 }
 
-.app-main{
+/* -------------------------------------------------------------- */
+.app-main {
   display: flex;
 }
-.app-main-left{
+.app-main-left {
   flex: auto;
 }
-.app-main-right{
+.app-main-right {
   flex: none;
-  width: 20vw;
+  width: 21vw;
+  margin-left: 0.5rem;
+  padding: 8px;
+  box-shadow: var(--border-shad);
+  border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -ms-border-radius: 8px;
+  -o-border-radius: 8px;
+}
+.app-main-right-body {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  font-size: 12px;
+}
+.app-main-right-body div {
+  padding: 5px 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(52, 152, 219, 0.6);
+  color: #fff;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  margin: 6px;
+  line-height: 12px;
+}
+html.dark .app-main-right-body div {
+}
+.app-main-right-body .app-main-class-icon {
+  font-size: 12px;
+  margin-right: 4px;
+}
+.module-title {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+.arc-card-box {
+  margin: 8px 0;
+}
+.arc-card-box:nth-child(1) {
+  margin-top: 0;
+}
+.z-icon {
+  font-size: 1rem;
+}
+/*  小于 768px */
+@media screen and (max-width: 768px) {
+  .app-main {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  .app-main-right {
+    margin-left: 0;
+    width: 100%;
+  }
 }
