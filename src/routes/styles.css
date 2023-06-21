@@ -21,17 +21,16 @@ h3 {
 }
 
 h1 {
-  font-size: 3.2rem;
-  text-align: center;
+
 }
-h1 .highlight,
-h3 .highlight {
+h1.highlight,
+h3.highlight {
   color: var(--qwik-light-blue);
 }
 
 h2 {
   font-weight: 400;
-  font-size: 2.4rem;
+  /* font-size: 2.4rem; */
 }
 h2 .highlight {
   font-weight: 700;
@@ -43,13 +42,13 @@ h3 {
 
 @media screen and (min-width: 768px) {
   h1 {
-    font-size: 5rem;
+    /* font-size: 5rem; */
   }
   h2 {
-    font-size: 3.4rem;
+    /* font-size: 3.4rem; */
   }
   h3 {
-    font-size: 3rem;
+    /* font-size: 3rem; */
   }
 }
 

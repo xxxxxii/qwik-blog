@@ -1,7 +1,29 @@
 article {
   text-align: left;
+  img{
+    width: 300px;
+  }
+  #preview{
+    *{
+      width: 100%;
+    }
+    width: calc(100vw - 160px - 21vw);
+    // overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  
+
+    pre{
+      width:100%;
+      overflow-y: auto;
+    }
+
+  }
+  pre.highlight{
+    background: rgb(33, 33, 33);
+  }
   h1 {
-    font-size: 24px;
+    font-size: 24px !important;
     text-align: left;
     padding: 8px 5px;
   }
@@ -9,4 +31,10 @@ article {
     width: 100%;
     font-size: 14px;
   }
+}
+
+h1,h2,h3,h4,h5,h6{
+  display: none;
+  box-sizing: border-box;
+  text-align: left;
 }

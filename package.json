@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "dayjs": "^1.11.8",
+    "highlight.js": "^11.8.0",
     "markdown-it": "^13.0.1"
   }
 }
