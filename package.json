@@ -43,8 +43,12 @@
     "vite-tsconfig-paths": "4.2.0"
   },
   "dependencies": {
+    "clipboard": "^2.0.11",
     "dayjs": "^1.11.8",
     "highlight.js": "^11.8.0",
-    "markdown-it": "^13.0.1"
+    "markdown-it": "^13.0.1",
+    "markdown-it-anchor": "^8.6.7",
+    "markdown-it-table-of-contents": "^0.6.0",
+    "markdown-it-toc-done-right": "^4.2.0"
   }
 }

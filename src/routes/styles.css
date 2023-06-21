@@ -21,7 +21,6 @@ h3 {
 }
 
 h1 {
-
 }
 h1.highlight,
 h3.highlight {
@@ -56,12 +55,6 @@ h3 {
 a {
   text-decoration: none;
   color: var(--qwik-light-blue);
-}
-
-code {
-  background: rgba(230, 230, 230, 0.3);
-  border-radius: 4px;
-  padding: 2px 6px;
 }
 
 ul {
@@ -268,6 +261,15 @@ html.dark .app-main-right-body div {
   }
   .app-main-right {
     margin-left: 0;
-    width: 100%;
+    width: calc(100% - 16px);
+  }
+  .table-of-contents {
+    display: none;
+  }
+  .arc-toc {
+    display: none;
+  }
+  .article-main {
+    /* display: block; */
   }
 }
