@@ -1,7 +1,6 @@
 $bf-bg: #c7e0f4;
 .article-main {
   box-shadow: var(--border-shad);
-  display: flex;
 
   .arc-toc {
     width: 200px;
@@ -137,7 +136,7 @@ $bf-bg: #c7e0f4;
   //   -o-border-radius: 8px;
   // }
   p > {
-    max-width: 100%;
+    width: 100%;
     img {
       max-width: 100%;
       height: auto;

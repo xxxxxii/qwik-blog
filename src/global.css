@@ -15,9 +15,34 @@
   --qwik-background: #ffffff;
   --qwik-dark-text: #383838;
   --primary:#006ce9;
+  --right-width:15vw;
   
   --border-shad: 0px 0px 16px 10px rgb(0 0 0 / 3%);
 }
+@media screen and (max-height:956px){
+  :root{
+    --right-width:22vw;
+  }
+}
+@media screen and (max-height:1200px){
+  :root{
+    --right-width:20vw;
+  }
+}
+@media screen and (max-height:1440px){
+  :root{
+    --right-width:16vw;
+  }
+}
+@media screen and (max-height:1920px){
+  :root{
+    --right-width:15vw;
+  }
+}
+
+
+
+
 html.dark {
   --qwik-background: #151934;
 }

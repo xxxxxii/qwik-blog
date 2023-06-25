@@ -201,7 +201,7 @@ button.button-small {
 }
 .app-main-right {
   flex: none;
-  width: 21vw;
+  width: var(--right-width);
   margin-left: 0.5rem;
   padding: 8px;
   box-shadow: var(--border-shad);
@@ -255,6 +255,9 @@ html.dark .app-main-right-body div {
 }
 /*  小于 768px */
 @media screen and (max-width: 768px) {
+ .container{
+  padding: 10px;
+ }
   .app-main {
     display: flex;
     flex-direction: column-reverse;

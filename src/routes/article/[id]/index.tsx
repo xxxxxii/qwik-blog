@@ -1,8 +1,8 @@
 /*
  * @Author: yulinZ 1973329248@qq.com
  * @Date: 2023-06-19 19:47:36
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-21 18:07:50
+ * @LastEditors: yulinZ 1973329248@qq.com
+ * @LastEditTime: 2023-06-22 23:55:23
  * @FilePath: \qwik-app\src\routes\test\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -33,7 +33,6 @@ import markdownIt from "markdown-it";
 import hljs from "highlight.js";
 import toc from "markdown-it-toc-done-right";
 import anchor from "markdown-it-anchor";
-import tocTabls from "markdown-it-table-of-contents";
 
 // import "highlight.js/scss"
 
@@ -84,6 +83,7 @@ export default component$(() => {
       //生成随机id 标识 用于复制功能
       const codeIndex =
         parseInt(Date.now() as any) + Math.floor(Math.random() * 10000000);
+
       if (lang && hljs.getLanguage(lang)) {
         try {
           // 得到经过highlight.js之后的html代码
@@ -163,7 +163,6 @@ export default component$(() => {
       permalinkSymbol: "¶",
       permalinkBefore: true,
     })
-    .use(tocTabls)
     .use(toc, { listType: "ul", itemClass: "toc-item" });
 
   // const tocRender: any = md.render("\n\n${toc}\n" + article?.content);
