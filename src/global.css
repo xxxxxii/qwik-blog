@@ -17,9 +17,11 @@
   --primary:#006ce9;
   
   --border-shad: 0px 0px 16px 10px rgb(0 0 0 / 3%);
+
 }
 html.dark {
   --qwik-background: #151934;
+  --qwik-dark-text:#f3f3f3;
 }
 
 html {

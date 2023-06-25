@@ -272,4 +272,7 @@ html.dark .app-main-right-body div {
   .article-main {
     /* display: block; */
   }
+  .card-left {
+    display: none;
+  }
 }

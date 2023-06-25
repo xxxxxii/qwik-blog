@@ -2,7 +2,7 @@
  * @Author: yulinZ 1973329248@qq.com
  * @Date: 2023-06-19 19:15:56
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-20 13:57:05
+ * @LastEditTime: 2023-06-25 15:07:55
  * @FilePath: \qwik-app\src\routes\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -29,6 +29,7 @@ const useData = routeLoader$(async () => {
 
 export default component$(() => {
   const dataList: any = useData();
+
   return (
     <>
       <div class="">
@@ -39,8 +40,11 @@ export default component$(() => {
                 key={item?.id || index}
                 title={item.title}
                 content={item?.bf}
+                wordsCount={item?.content.length}
                 isTop={item?.type == 5}
-                dateTime={dayjs(item?.createdAt).format("YYYY-MM-DD HH:mm")}
+                img={item?.img}
+                dateTime={dayjs(item?.createdAt).format("YYYY-MM-DD")}
+                updateTime={dayjs(item?.updatedAt).format("YYYY-MM-DD")}
                 group={item?.group}
                 labels={item?.labels}
                 onClick$={() => {
