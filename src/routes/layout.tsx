@@ -1,4 +1,3 @@
-
 import { component$, Slot, useStyles$ } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import type { RequestHandler } from "@builder.io/qwik-city";
@@ -22,7 +21,6 @@ const useData = routeLoader$(async () => {
 
 const useLabelsList = routeLoader$(async () => {
   const response: any = await getLabels();
-
 
   return (await response.json()) as {
     data: [];
@@ -56,18 +54,21 @@ export default component$(() => {
   return (
     <>
       <Header />
-     {/* <Counter />
-     <Hero /> */}
-     <NextSteps />
+      <NextSteps />
       <div class="container">
         <main class="app-main">
           <div class="app-main-left">
             <Slot />
           </div>
-          <div class="app-main-right">
+          {/* <div class="app-main-right"></div> */}
+          <div class="app-main-right fixed-app-right">
             <div class="app-main-right-card">
               <h2 class="module-title">
-                <iconify-icon class="z-icon" icon="uil:layer-group" width="22"></iconify-icon>
+                <iconify-icon
+                  class="z-icon"
+                  icon="uil:layer-group"
+                  width="22"
+                ></iconify-icon>
                 分类
               </h2>
               <div class="app-main-right-body">
@@ -87,14 +88,22 @@ export default component$(() => {
 
             <div class="app-main-right-card">
               <h2 class="module-title">
-                <iconify-icon class="z-icon" icon="mdi:label-multiple" width="22"></iconify-icon>
+                <iconify-icon
+                  class="z-icon"
+                  icon="mdi:label-multiple"
+                  width="22"
+                ></iconify-icon>
                 标签
               </h2>
               <div class="app-main-right-body">
                 {/* {labelList.value} */}
                 {labelList.value?.data.map((item: any, index: number) => {
                   return (
-                    <div class="cp" key={item?.id || index} style={{background:item?.color}}>
+                    <div
+                      class="cp"
+                      key={item?.id || index}
+                      style={{ background: item?.color }}
+                    >
                       {item?.name}
                     </div>
                   );

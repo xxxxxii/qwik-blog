@@ -6,7 +6,18 @@ html {
     "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
-
+.pagination-bar {
+  padding: 10px 0;
+  text-align: right;
+}
+.page-type {
+  padding: 8px;
+  margin: 5px;
+}
+.no-drop {
+  cursor: no-drop;
+  opacity: 0.6;
+}
 body {
   background: var(--qwik-background);
   color: var(--qwik-dark-text);
@@ -63,41 +74,20 @@ ul {
 }
 
 /* CONTAINER ------------------------------------ */
+.container-banner {
+  padding: 60px 80px;
+  /* margin: 0 auto; */
+}
 .container {
+  width: 80%;
   margin: 0 auto;
-  padding: 30px 40px;
 }
-.container.container-purple {
-  background: var(--qwik-light-purple);
-}
-.container.container-dark {
-  background: var(--qwik-dark-background);
-  color: var(--qwik-dark-text);
-}
-.container.container-center {
+.container-center {
   text-align: center;
 }
-.container.container-flex {
-  /* does nothing on mobile */
+.container-purple {
+  background: var(--qwik-light-purple);
 }
-.container.container-spacing-xl {
-  padding: 50px 40px;
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    padding: 50px 80px;
-  }
-  .container.container-spacing-xl {
-    padding: 100px 60px;
-  }
-  .container.container-flex {
-    display: flex;
-    justify-content: center;
-    gap: 60px;
-  }
-}
-
 /* BUTTONS -------------------------------------- */
 a.button,
 button {
@@ -195,22 +185,52 @@ button.button-small {
 /* -------------------------------------------------------------- */
 .app-main {
   display: flex;
+  min-height: 100vh;
 }
+
+/* @media screen and (max-width: 956px) {
+  .app-main {
+  }
+}
+@media screen and (max-width: 1200px) {
+  .app-main {
+    width: 900px;
+  }
+}
+@media screen and (max-width: 1440px) {
+  .app-main {
+    width: 1200px;
+  }
+}
+@media screen and (max-width: 1920px) {
+  .app-main {
+    width: 1440px;
+  }
+} */
+
 .app-main-left {
-  flex: auto;
+  flex: 1;
+  width: calc(100% - var(--right-width));
 }
 .app-main-right {
   flex: none;
   width: var(--right-width);
   margin-left: 0.5rem;
   padding: 8px;
-  box-shadow: var(--border-shad);
   border-radius: 8px;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -ms-border-radius: 8px;
   -o-border-radius: 8px;
 }
+.fixed-app-right {
+  position: sticky;
+  /* right: 80px; */
+  height: fit-content;
+  top: 60px;
+  box-shadow: var(--border-shad);
+}
+
 .app-main-right-body {
   display: flex;
   justify-content: center;
@@ -252,17 +272,23 @@ html.dark .app-main-right-body div {
 }
 .z-icon {
   font-size: 1rem;
-  color:var(--qwik-dark-blue);
+  color: var(--qwik-dark-blue);
   margin: 5px;
 }
 /*  小于 768px */
 @media screen and (max-width: 768px) {
- .container{
-  padding: 10px;
- }
+  .container {
+    padding: 10px;
+    width: auto;
+  }
   .app-main {
     display: flex;
     flex-direction: column-reverse;
+    width: 100%;
+  }
+
+  .app-main-left {
+    width: 100%;
   }
   .app-main-right {
     margin-left: 0;
@@ -279,5 +305,8 @@ html.dark .app-main-right-body div {
   }
   .card-left {
     display: none;
+  }
+  .fixed-app-right {
+    position: static;
   }
 }

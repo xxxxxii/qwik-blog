@@ -1,19 +1,10 @@
-
 import {
   component$,
-  useVisibleTask$,
-  useStore,
-  useStylesScoped$,
-  useResource$,
-  Resource,
-  noSerialize,
   useSignal,
-  useTask$,
-  createElement,
   useStyles$,
-  useOnWindow,
   $,
   useOnDocument,
+  useOnWindow,
 } from "@builder.io/qwik";
 import {
   type DocumentHead,
@@ -26,8 +17,6 @@ import markdownIt from "markdown-it";
 import hljs from "highlight.js";
 import toc from "markdown-it-toc-done-right";
 import anchor from "markdown-it-anchor";
-
-// import "highlight.js/scss"
 
 const useData = routeLoader$(async (requestEvent) => {
   let response: any = null;
@@ -46,25 +35,48 @@ export default component$(() => {
   useStyles$(styles);
   const dataList: any = useData();
   const article = dataList.value.data[0];
-
   const markdownRef = useSignal<Element>();
+
+  useOnWindow(
+    "resize",
+    $(() => {
+      if (window.innerWidth < 1200) {
+        const tocListDom = document.querySelector(".table-of-contents");
+        const disStyle = (tocListDom as HTMLElement).style;
+        disStyle.display = "none";
+      }
+    })
+  );
 
   useOnDocument(
     "click",
     $((event: Event) => {
       const target = event.target as HTMLElement;
+      // 点击的是目录按钮
+      if (target.className === "toc-btn") {
+        const tocListDom = document.querySelector(".table-of-contents");
+        const disStyle = (tocListDom as HTMLElement).style;
+        if (!disStyle.display || disStyle.display === "block") {
+          disStyle.display = "none";
+        } else {
+          disStyle.display = "block";
+        }
+      }
+
       const copyId: any = target.getAttribute("data-clipboard-target");
+      // code 复制功能
+      if (copyId) {
+        const element = document.querySelector(copyId);
+        element.select();
+        element.setSelectionRange(0, element.value.length);
+        document.execCommand("copy");
 
-      const element = document.querySelector(copyId);
-      element.select();
-      element.setSelectionRange(0, element.value.length);
-      document.execCommand("copy");
-
-      // 修改copy btn 的提示 2s 后还原
-      target.innerText = "copied";
-      setTimeout(() => {
-        target.innerText = "copy";
-      }, 2000);
+        // 修改copy btn 的提示 2s 后还原
+        target.innerText = "copied";
+        setTimeout(() => {
+          target.innerText = "copy";
+        }, 2000);
+      }
     })
   );
 
@@ -84,7 +96,6 @@ export default component$(() => {
             language: lang,
             ignoreIllegals: true,
           }).value;
-          console.log(preCode);
           // 以换行进行分割
           const lines = preCode.split(/\n/).slice(0, -1);
           // 添加自定义行号
@@ -164,6 +175,7 @@ export default component$(() => {
   return (
     <div class="article-main">
       {/* <div class="arc-toc"></div> */}
+      <button class="toc-btn">目录</button>
       <article>
         <h1 class="arc-title">{article?.title}</h1>
         <div class="arc-bf">{article?.bf}</div>

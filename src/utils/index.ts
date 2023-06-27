@@ -1,3 +1,6 @@
-export const copyCode = (code: string) => {
-  console.log("22222222222222");
-};
+/*
+ * @Description:
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-27 17:23:57
+ */

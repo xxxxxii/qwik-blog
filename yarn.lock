@@ -2438,11 +2438,6 @@ queue-microtask@^1.2.2:
   resolved "https://registry.yarnpkg.com/queue-microtask/-/queue-microtask-1.2.3.tgz#4929228bbc724dfac43e0efb058caf7b6cfb6243"
   integrity sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==
 
-qwik-image@^0.0.7:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/qwik-image/-/qwik-image-0.0.7.tgz#1e94db42f0713171efc2221a8252cb77275fe2c5"
-  integrity sha512-JodIaKlasCuaGe7hM30LVdD4GMVJ4Lp8W9cakU1PAkPe9teC3APOLta3qmVMbAtV0gXmeLq4y/EDwl/44rRX2g==
-
 range-parser@~1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.1.tgz#3cf37023d199e1c24d1a55b84800c2f3e6468031"

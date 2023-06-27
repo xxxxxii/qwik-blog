@@ -14,42 +14,38 @@
   --qwik-dirty-black: #1d2033;
   --qwik-background: #ffffff;
   --qwik-dark-text: #383838;
-  --primary:#006ce9;
-  --right-width:15vw;
-  
-  --border-shad: 0px 0px 16px 10px rgb(0 0 0 / 3%);
+  --primary: #006ce9;
+  --right-width: 15vw;
 
+  --border-shad: 0px 0px 16px 10px rgb(0 0 0 / 3%);
 }
-.cp{
+.cp {
   cursor: pointer;
 }
-@media screen and (max-height:956px){
-  :root{
-    --right-width:22vw;
+@media screen and (max-width: 956px) {
+  :root {
+    --right-width: 22vw;
   }
 }
-@media screen and (max-height:1200px){
-  :root{
-    --right-width:20vw;
+@media screen and (max-width: 1200px) {
+  :root {
+    --right-width: 20vw;
   }
 }
-@media screen and (max-height:1440px){
-  :root{
-    --right-width:16vw;
+@media screen and (max-width: 1440px) {
+  :root {
+    --right-width: 16vw;
   }
 }
-@media screen and (max-height:1920px){
-  :root{
-    --right-width:15vw;
+@media screen and (max-width: 1920px) {
+  :root {
+    --right-width: 15vw;
   }
 }
-
-
-
 
 html.dark {
   --qwik-background: #151934;
-  --qwik-dark-text:#f3f3f3;
+  --qwik-dark-text: #f3f3f3;
 }
 
 html {
@@ -66,7 +62,8 @@ html {
 body {
   padding: 0;
   margin: 0;
-  line-height: inherit;
+  /* line-height: inherit; */
+  /* min-height: 100vh; */
 }
 
 /**

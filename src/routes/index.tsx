@@ -1,8 +1,8 @@
 /*
  * @Author: yulinZ 1973329248@qq.com
  * @Date: 2023-06-26 22:07:46
- * @LastEditors: yulinZ 1973329248@qq.com
- * @LastEditTime: 2023-06-27 08:02:53
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2023-06-27 17:22:48
  * @FilePath: \qwik-app\src\routes\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,19 +14,14 @@
  * @FilePath: \qwik-app\src\routes\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { component$, useSignal, useStore } from "@builder.io/qwik";
-import { DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
+import { component$, useStore } from "@builder.io/qwik";
+import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 
-import Counter from "~/components/starter/counter/counter";
-import Hero from "~/components/starter/hero/hero";
-import Infobox from "~/components/starter/infobox/infobox";
-import Starter from "~/components/starter/next-steps/next-steps";
 import ArcCard from "~/components/arc-card/arc-card";
 import dayjs from "dayjs";
 import { getData } from "~/api";
-import { ApiBase } from "~/api/config";
 
-const useData = routeLoader$(async () => {
+export const useData = routeLoader$(async () => {
   const response: any = await getData();
   return (await response.json()) as {
     data: [];
@@ -35,38 +30,42 @@ const useData = routeLoader$(async () => {
   };
 });
 
-const handlerNextPage = async (state:any,dataList) =>{
-  state.page += 1
-  const result =  await getData(state);
+// 下一页
+const handlerNextPage = (state: any) => {
+  state.pageInfo.page += 1;
+  updateList(state);
+};
 
-  const res  = await result.json() as {
+// update list
+const updateList = async (state: any) => {
+  const result = await getData(state.pageInfo);
+  const res = (await result.json()) as {
     data: [];
     code: string;
     total: number;
-  }
-  dataList = res.data
-  state.total= res.total 
-  console.log(res)
-  // return result.json()
-}
+  };
+  state.list.value = res;
+};
 
+// 上一页
+const handlerPrePage = (state: any) => {
+  state.pageInfo.page -= 1;
+  updateList(state);
+};
 
 export default component$(() => {
-  let dataList: any = useStore();
-  dataList  = useData()
-  const pageInfo = useStore({
-    total:null,
-    pageSize:10,
-    page:1
-  })
-  pageInfo.total = dataList.total
-
-
-
+  const store = useStore({
+    list: useData(),
+    pageInfo: {
+      total: 10,
+      pageSize: 10,
+      page: 1,
+    },
+  });
   return (
     <>
       <div class="">
-        {dataList?.data.map((item: any, index: number) => {
+        {store.list.value?.data.map((item: any, index: number) => {
           return (
             <div class="arc-card-box" key={item?.id || index}>
               <ArcCard
@@ -88,8 +87,34 @@ export default component$(() => {
           );
         })}
 
-        <div>
-        共 {pageInfo.total } 篇，当前 {pageInfo.page} 页  <button onClick$={()=>handlerNextPage(pageInfo,dataList)}> 下一页</button>
+        <div class="pagination-bar">
+          共 {store.list.value.total} 篇，
+          <button
+            disabled={store.pageInfo.page > 1 ? false : true}
+            class={["page-type", store.pageInfo.page > 1 ? "" : "no-drop"]}
+            onClick$={() => handlerPrePage(store)}
+          >
+            上一页
+          </button>
+          当前 {store.pageInfo.page} 页
+          <button
+            disabled={
+              store.pageInfo.page <
+              store.list.value.total / store.pageInfo.pageSize
+                ? false
+                : true
+            }
+            class={[
+              "page-type",
+              store.pageInfo.page <
+              store.list.value.total / store.pageInfo.pageSize
+                ? ""
+                : "no-drop",
+            ]}
+            onClick$={() => handlerNextPage(store)}
+          >
+            下一页
+          </button>
         </div>
       </div>
     </>

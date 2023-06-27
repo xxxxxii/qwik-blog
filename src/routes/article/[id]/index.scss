@@ -7,41 +7,32 @@ $bf-bg: #c7e0f4;
     box-shadow: var(--border-shad);
     flex: none;
   }
-  // article {
-  //   flex: auto;
-  //   width: calc(100vw - 21vw - 200px - 160px);
-  //   #preview {
-  //     width: fit-content;
-  //     p {
-  //       width: fit-content;
-  //     }
-  //   }
-  // }
-  // arc toc
-  // .table-of-contents {
-  //   position: fixed;
-  //   top: 210px;
-  //   left: 80px;
 
-  //   ul {
-  //     padding: 0 10px;
-  //   }
-  //   .toc-item {
-  //     width: calc(200px - 20px);
-
-  //     overflow: hidden; //超出的文本隐藏
-  //     text-overflow: ellipsis; //溢出用省略号显示
-  //     white-space: nowrap; // 默认不换行；
-  //   }
-  //   // ol {
-  //   //   li {
-  //   //     // padding-left: 16px;
-  //   //     // overflow: hidden; //超出的文本隐藏
-  //   //     text-overflow: ellipsis; //溢出用省略号显示
-  //   //     white-space: nowrap; // 默认不换行；
-  //   //   }
-  //   // }
-  // }
+  .toc-btn {
+    position: fixed;
+    top: 452px;
+    left: 0;
+    background: #009688;
+    padding: 5px;
+    z-index: 999;
+  }
+  .table-of-contents {
+    z-index: 998;
+    position: fixed;
+    top: 472px;
+    left: 0;
+    box-shadow: var(--border-shad);
+    ul {
+      padding: 0 10px;
+    }
+    .toc-item {
+      width: calc(180px - 20px);
+      font-size: 14px;
+      overflow: hidden; //超出的文本隐藏
+      text-overflow: ellipsis; //溢出用省略号显示
+      white-space: nowrap; // 默认不换行；
+    }
+  }
   .arc-title {
     font-size: 28px !important;
     margin-top: 0;

@@ -2,12 +2,12 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-27 07:58:48
+ * @LastEditTime: 2023-06-27 10:26:58
  */
 import qs from "qs"
 import { ApiBase } from "./config";
 
-export function getData(params:any={page:1,pageSize:16}) {
+export function getData(params:any={page:1,pageSize:10}) {
   // return getViewInitData("/blogApi/article?total=10&page=1&pageSize=16");
   // 
   return fetch(ApiBase + "/blogApi/article?" + qs.stringify(params) , {
