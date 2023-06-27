@@ -1,11 +1,4 @@
-/*
- * @Author: yulinZ 1973329248@qq.com
- * @Date: 2023-06-19 19:47:36
- * @LastEditors: yulinZ 1973329248@qq.com
- * @LastEditTime: 2023-06-22 23:55:23
- * @FilePath: \qwik-app\src\routes\test\index.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+
 import {
   component$,
   useVisibleTask$,
@@ -167,19 +160,6 @@ export default component$(() => {
 
   // const tocRender: any = md.render("\n\n${toc}\n" + article?.content);
   const htmlStr: any = md.render("\n\n${toc}\n" + article?.content);
-
-  // useTask$(() => {
-  //   markdownRef.value = htmlStr.value;
-  //   console.log(markdownRef.value);
-  // });
-  // handleShortener(state)
-  // useVisibleTask$(async ({ cleanup }) => {
-  //   const timeout = setTimeout(() => (state.count = 1), 500);
-  //   cleanup(() => clearTimeout(timeout));
-
-  //   const internal = setInterval(() => state.count++, 7000);
-  //   cleanup(() => clearInterval(internal));
-  // });
 
   return (
     <div class="article-main">

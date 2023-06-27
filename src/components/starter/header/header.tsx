@@ -2,7 +2,7 @@
  * @Author: yulinZ 1973329248@qq.com
  * @Date: 2023-06-19 19:15:56
  * @LastEditors: yulinZ 1973329248@qq.com
- * @LastEditTime: 2023-06-22 16:52:41
+ * @LastEditTime: 2023-06-26 22:32:14
  * @FilePath: \qwik-app\src\components\starter\header\header.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -22,13 +22,13 @@ export default component$(() => {
         </div>
         <ul>
           <li>
-            <a href="https://qwik.builder.io/docs/components/overview/" target="_blank">
+            <a href="/zui" target="_blank">
               ZUI文档
             </a>
           </li>
           <li>
             <a href="https://qwik.builder.io/examples/introduction/hello-world/" target="_blank">
-              Examples
+             About Me
             </a>
           </li>
           <li>

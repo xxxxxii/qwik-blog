@@ -2,21 +2,25 @@
  * @Author: yulinZ 1973329248@qq.com
  * @Date: 2023-06-20 01:48:27
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-20 10:40:10
+ * @LastEditTime: 2023-06-25 15:09:50
  * @FilePath: \qwik-app\src\components\arc-card\arc-card.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { component$, useStylesScoped$ } from "@builder.io/qwik";
 // import { QwikLogo } from '../icons/qwik';
 import styles from "./crad.css?inline";
+// import Img from "../img/img"
 
 interface propsDto {
   title: string;
   isTop?: boolean;
   content: string;
   dateTime?: string;
+  updateTime?: string;
+  wordsCount?: number;
   group?: any;
   labels?: [];
+  img?: string;
   onClick$: (event: any) => void;
 }
 
@@ -25,23 +29,35 @@ export default component$((props: propsDto) => {
   return (
     <div class="card">
       {props?.isTop ? <span class="is-top"></span> : ""}
-      <h3 class="card__title cp" onClick$={props?.onClick$}>
-        {props.title}
-      </h3>
-      <p class="card__content">{props?.content}</p>
-      <div class="card__date">
-        {props?.dateTime}
-        <span> {props?.group?.name}</span>
-      </div>
-      <div class="card-labels">
-        {props?.labels &&
-          props?.labels.map((item: any) => {
-            return (
-              <span style="margin-right:4px" class="cp" key={item?.id}>
-                {item?.name}
-              </span>
-            );
-          })}
+      <div class="card-left">{/* <Img src={props.img} /> */}</div>
+      <div class="card-right">
+        <h3 class="card__title cp" onClick$={props?.onClick$}>
+          {props.title}
+        </h3>
+        <p class="card-info">
+          <span class="card-info-create-time frist-child">
+            发表于: {props.dateTime}{" "}
+          </span>
+          <span class="card-info-update-time">更新于: {props.updateTime}</span>
+          <span class="card-info-words-count">
+            字数统计: {props?.wordsCount}
+          </span>
+        </p>
+        <p class="card__content">{props?.content}</p>
+        <div class="card__date">
+          {props?.dateTime}
+          <span> {props?.group?.name}</span>
+        </div>
+        <div class="card-labels">
+          {props?.labels &&
+            props?.labels.map((item: any) => {
+              return (
+                <span style="margin-right:4px" class="cp" key={item?.id}>
+                  {item?.name}
+                </span>
+              );
+            })}
+        </div>
       </div>
 
       <div class="card__arrow cp" onClick$={props?.onClick$}>

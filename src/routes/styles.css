@@ -252,6 +252,8 @@ html.dark .app-main-right-body div {
 }
 .z-icon {
   font-size: 1rem;
+  color:var(--qwik-dark-blue);
+  margin: 5px;
 }
 /*  小于 768px */
 @media screen and (max-width: 768px) {
@@ -274,5 +276,8 @@ html.dark .app-main-right-body div {
   }
   .article-main {
     /* display: block; */
+  }
+  .card-left {
+    display: none;
   }
 }

@@ -18,6 +18,10 @@
   --right-width:15vw;
   
   --border-shad: 0px 0px 16px 10px rgb(0 0 0 / 3%);
+
+}
+.cp{
+  cursor: pointer;
 }
 @media screen and (max-height:956px){
   :root{
@@ -45,6 +49,7 @@
 
 html.dark {
   --qwik-background: #151934;
+  --qwik-dark-text:#f3f3f3;
 }
 
 html {

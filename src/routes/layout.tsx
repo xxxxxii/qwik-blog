@@ -1,27 +1,29 @@
-/*
- * @Author: yulinZ 1973329248@qq.com
- * @Date: 2023-06-19 19:15:56
- * @LastEditors: yulinZ 1973329248@qq.com
- * @LastEditTime: 2023-06-22 01:28:12
- * @FilePath: \qwik-app\src\routes\layout.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
+
 import { component$, Slot, useStyles$ } from "@builder.io/qwik";
 import { routeLoader$ } from "@builder.io/qwik-city";
 import type { RequestHandler } from "@builder.io/qwik-city";
 
 import Header from "~/components/starter/header/header";
 import Footer from "~/components/starter/footer/footer";
-import Counter from "~/components/starter/counter/counter";
-import Hero from "~/components/starter/hero/hero";
 import NextSteps from "~/components/starter/next-steps/next-steps";
-import { getClass } from "~/api";
+import { getClass, getLabels } from "~/api";
 import styles from "./styles.css?inline";
 
 const useData = routeLoader$(async () => {
   const response: any = await getClass();
 
   // console.log(await response.json());
+  return (await response.json()) as {
+    data: [];
+    code: string;
+    total: number;
+  };
+});
+
+const useLabelsList = routeLoader$(async () => {
+  const response: any = await getLabels();
+
+
   return (await response.json()) as {
     data: [];
     code: string;
@@ -50,6 +52,7 @@ export default component$(() => {
   useStyles$(styles);
 
   const groupList: any = useData();
+  const labelList: any = useLabelsList();
   return (
     <>
       <Header />
@@ -62,22 +65,41 @@ export default component$(() => {
             <Slot />
           </div>
           <div class="app-main-right">
-            <h2 class="module-title">
-              <iconify-icon class="z-icon" icon="logos:vue"></iconify-icon> 分类
-            </h2>
+            <div class="app-main-right-card">
+              <h2 class="module-title">
+                <iconify-icon class="z-icon" icon="uil:layer-group" width="22"></iconify-icon>
+                分类
+              </h2>
+              <div class="app-main-right-body">
+                {groupList.value?.data.map((item: any, index: number) => {
+                  return (
+                    <div class="cp" key={item?.id || index}>
+                      <iconify-icon
+                        class="app-main-class-icon"
+                        icon={item?.icon}
+                      ></iconify-icon>
+                      {item?.name}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
 
-            <div class="app-main-right-body">
-              {groupList.value?.data.map((item: any, index: number) => {
-                return (
-                  <div key={item?.id || index}>
-                    <iconify-icon
-                      class="app-main-class-icon"
-                      icon={item?.icon}
-                    ></iconify-icon>
-                    {item?.name}
-                  </div>
-                );
-              })}
+            <div class="app-main-right-card">
+              <h2 class="module-title">
+                <iconify-icon class="z-icon" icon="mdi:label-multiple" width="22"></iconify-icon>
+                标签
+              </h2>
+              <div class="app-main-right-body">
+                {/* {labelList.value} */}
+                {labelList.value?.data.map((item: any, index: number) => {
+                  return (
+                    <div class="cp" key={item?.id || index} style={{background:item?.color}}>
+                      {item?.name}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </main>

@@ -1,1 +1,1 @@
-export const ApiBase = import.meta.env.SSR ? "https://blogyl.xyz" : "";
+export const ApiBase =  import.meta.env.SSR ? "https://blogyl.xyz" : "";
