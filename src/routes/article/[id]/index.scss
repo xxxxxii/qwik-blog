@@ -1,4 +1,6 @@
 $bf-bg: #c7e0f4;
+$border-color: rgba(173, 173, 173, 0.5);
+$code-color: rgba(185, 185, 185, 0.5);
 .article-main {
   box-shadow: var(--border-shad);
 
@@ -35,12 +37,14 @@ $bf-bg: #c7e0f4;
   }
   .arc-title {
     font-size: 28px !important;
-    margin-top: 0;
+    padding: 1em 0;
+    margin: 0;
   }
   .arc-bf {
     border-left: #009688 6px solid;
     background-color: $bf-bg;
     min-height: 30px;
+    padding: 1em;
     border-radius: 4px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
@@ -173,7 +177,7 @@ $bf-bg: #c7e0f4;
     -moz-border-radius: 3px;
     -ms-border-radius: 3px;
     -o-border-radius: 3px;
-    border: 1px solid #ccc;
+    border: 1px solid $code-color;
     padding: 0.5em 0.7em;
     display: block !important;
     font-size: 12px !important;
@@ -235,12 +239,16 @@ Note that we only use a top margin and not a bottom margin -- this prevents the
 
   ul,
   ol {
-    padding-left: 2em;
+    // padding-left: 2em;
   }
 
   li {
     margin: 0.5em 0;
-    font-size: 16px;
+    font-size: 14px;
+    &::marker {
+      font-size: 12px;
+      width: fit-content;
+    }
   }
 
   /* Space paragraphs in a list the same as the list itself. */
@@ -320,14 +328,15 @@ Note that we only use a top margin and not a bottom margin -- this prevents the
     padding: 0;
     font-weight: bold;
     color: #009688;
+    padding-bottom: 8px;
   }
   h1 {
     font-size: 24px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $border-color;
   }
   h2 {
     font-size: 22px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid $border-color;
   }
   h3 {
     font-size: 20px;
@@ -393,5 +402,8 @@ Note that we only use a top margin and not a bottom margin -- this prevents the
   strong,
   b {
     color: #bf360c;
+  }
+  .line-num {
+    font-size: 14px;
   }
 }

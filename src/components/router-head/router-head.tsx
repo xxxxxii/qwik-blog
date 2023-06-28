@@ -2,7 +2,7 @@
  * @Description:
  * @version: 0.0.1
  * @Author: yulinZ
- * @LastEditTime: 2023-06-21 10:17:03
+ * @LastEditTime: 2023-06-28 13:36:04
  */
 import { component$ } from "@builder.io/qwik";
 import { useDocumentHead, useLocation } from "@builder.io/qwik-city";
@@ -21,15 +21,14 @@ export const RouterHead = component$(() => {
       <link rel="canonical" href={loc.url.href} />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta name="referrer" content="no-referrer" />
-      <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+      <meta
+        http-equiv="Cache-Control"
+        content="no-cache, no-store, must-revalidate"
+      />
+      <meta http-equiv="Pragma" content="no-cache" />
+      <meta http-equiv="Expires" content="0" />
+      <link rel="icon" type="image/svg+xml" href="/logo.png" />
       <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-
-      {/* <link
-        rel="stylesheet"
-        href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/styles/default.min.css"
-      /> */}
-
-      <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.11.0/highlight.min.js"></script>
 
       {head.meta.map((m) => (
         <meta key={m.key} {...m} />

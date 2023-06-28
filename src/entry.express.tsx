@@ -1,4 +1,10 @@
 /*
+ * @Description:
+ * @version: 0.0.1
+ * @Author: yulinZ
+ * @LastEditTime: 2023-06-28 09:11:14
+ */
+/*
  * WHAT IS THIS FILE?
  *
  * It's the entry point for the Express HTTP server when building for production.
@@ -29,7 +35,7 @@ const distDir = join(fileURLToPath(import.meta.url), "..", "..", "dist");
 const buildDir = join(distDir, "build");
 
 // Allow for dynamic port
-const PORT = process.env.PORT ?? 3003;
+const PORT = process.env.PORT ?? 3000;
 
 // Create the Qwik City Node middleware
 const { router, notFound } = createQwikCity({ render, qwikCityPlan, manifest });

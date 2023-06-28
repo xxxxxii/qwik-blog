@@ -2,7 +2,7 @@
  * @Author: yulinZ 1973329248@qq.com
  * @Date: 2023-06-26 22:07:46
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-27 17:22:48
+ * @LastEditTime: 2023-06-28 13:36:34
  * @FilePath: \qwik-app\src\routes\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,7 +14,7 @@
  * @FilePath: \qwik-app\src\routes\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { component$, useStore } from "@builder.io/qwik";
+import { component$, useOnWindow, useStore, $ } from "@builder.io/qwik";
 import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
 
 import ArcCard from "~/components/arc-card/arc-card";
@@ -22,6 +22,7 @@ import dayjs from "dayjs";
 import { getData } from "~/api";
 
 export const useData = routeLoader$(async () => {
+  // sessionStorage.getItem("pageInfo");
   const response: any = await getData();
   return (await response.json()) as {
     data: [];
@@ -38,6 +39,7 @@ const handlerNextPage = (state: any) => {
 
 // update list
 const updateList = async (state: any) => {
+  sessionStorage.setItem("pageInfo", JSON.stringify(state.pageInfo));
   const result = await getData(state.pageInfo);
   const res = (await result.json()) as {
     data: [];
@@ -62,6 +64,20 @@ export default component$(() => {
       page: 1,
     },
   });
+  // useOnWindow(
+  //   "load",
+  //   $(() => {
+  //     if (window.innerWidth < 1200) {
+  //       const pageInfo = JSON.parse(
+  //         sessionStorage.getItem("pageInfo") as string
+  //       );
+  //       if (pageInfo) {
+  //         store.pageInfo = pageInfo;
+  //         updateList(store);
+  //       }
+  //     }
+  //   })
+  // );
   return (
     <>
       <div class="">
