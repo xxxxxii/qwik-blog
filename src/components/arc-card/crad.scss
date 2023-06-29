@@ -25,8 +25,13 @@ $dot-bg: rgba(1, 1, 1, 0.5);
     flex: auto;
     width: 100%;
     .card-info {
+      font-size: 0.8rem;
+      font-weight: 200;
+      span {
+        line-height: 1.5rem;
+      }
       > span:not(.frist-child)::before {
-        content: "•";
+        content: '•';
         margin: 0 0.5rem;
         color: var(--qwik-dark-text);
       }
@@ -47,6 +52,7 @@ $dot-bg: rgba(1, 1, 1, 0.5);
 .card .card__content {
   //   color: var(--secondary-color);
   font-size: 0.86rem;
+  line-height: 1.5rem;
   overflow: hidden; //超出的文本隐藏
   display: -webkit-box;
   -webkit-line-clamp: 2; // 超出多少行
@@ -56,7 +62,7 @@ $dot-bg: rgba(1, 1, 1, 0.5);
 .card .card__title {
   // padding: 6px 0;
   font-size: 1.3rem;
-  // line-height: 1.4rem;
+  line-height: 1.5rem;
   font-weight: bold;
   overflow: hidden; //超出的文本隐藏
   display: -webkit-box;
@@ -118,16 +124,11 @@ $dot-bg: rgba(1, 1, 1, 0.5);
 }
 
 .card .is-top::before {
-  content: "置顶";
+  content: '置顶';
   position: absolute;
   width: 150%;
   height: 20px;
-  background-image: linear-gradient(
-    45deg,
-    #ff6547 0%,
-    #ffb144 51%,
-    #ff7053 100%
-  );
+  background-image: linear-gradient(45deg, #ff6547 0%, #ffb144 51%, #ff7053 100%);
   transform: rotate(45deg) translateY(-10px);
   display: flex;
   align-items: center;
@@ -140,7 +141,7 @@ $dot-bg: rgba(1, 1, 1, 0.5);
 }
 
 .card .is-top::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 6px;
   bottom: 0;
@@ -148,10 +149,5 @@ $dot-bg: rgba(1, 1, 1, 0.5);
   height: 6px;
   z-index: -1;
   box-shadow: -74px -74px #cc3f47;
-  background-image: linear-gradient(
-    45deg,
-    #ff512f 0%,
-    #f09819 51%,
-    #ff512f 100%
-  );
+  background-image: linear-gradient(45deg, #ff512f 0%, #f09819 51%, #ff512f 100%);
 }

@@ -1,67 +1,59 @@
-/*
- * @Author: yulinZ 1973329248@qq.com
- * @Date: 2023-06-19 19:15:56
- * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-28 17:20:59
- * @FilePath: \qwik-app\src\components\starter\header\header.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- */
-import {
-  component$,
-  useStylesScoped$,
-  useOnDocument,
-  $,
-  useContext,
-} from "@builder.io/qwik";
-import styles from "./theme.css?inline";
-import { GlobalStore } from "~/content";
+import { $, component$, useContext, useStylesScoped$, useVisibleTask$ } from '@builder.io/qwik';
+import { GlobalStore } from '~/context';
+import { themeStorageKey } from '../../router-head/theme-script';
+import styles from './theme.css?inline';
 
-const themeChange = (store: any) => {
-  const htmlClassList: DOMTokenList = (
-    document.querySelector("html") as HTMLElement
-  )?.classList;
-  if (htmlClassList?.contains("dark")) {
-    htmlClassList.remove("dark");
-    sessionStorage.setItem("theme", "light");
-    store.isDark = false;
+export const DARK_THEME = 'dark';
+export const LIGHT_THEME = 'light';
+export type ThemePreference = typeof DARK_THEME | typeof LIGHT_THEME;
+
+export const colorSchemeChangeListener = (onColorSchemeChange: (isDark: boolean) => void) => {
+  const listener = ({ matches: isDark }: MediaQueryListEvent) => {
+    onColorSchemeChange(isDark);
+  };
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (event) => listener(event));
+
+  return () => window.matchMedia('(prefers-color-scheme: dark)').removeEventListener('change', listener);
+};
+
+export const setPreference = (theme: ThemePreference) => {
+  localStorage.setItem(themeStorageKey, theme);
+  reflectPreference(theme);
+};
+
+export const reflectPreference = (theme: ThemePreference) => {
+  document.firstElementChild?.setAttribute('data-theme', theme);
+  document.firstElementChild?.classList.toggle('dark', theme === DARK_THEME);
+};
+
+export const getColorPreference = (): ThemePreference => {
+  if (localStorage.getItem(themeStorageKey)) {
+    console.log(localStorage.getItem(themeStorageKey));
+    return localStorage.getItem(themeStorageKey) as ThemePreference;
   } else {
-    htmlClassList.add("dark");
-    sessionStorage.setItem("theme", "dark");
-    store.isDark = true;
+    console.log(window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK_THEME : LIGHT_THEME);
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? DARK_THEME : LIGHT_THEME;
   }
 };
 
 export default component$(() => {
   useStylesScoped$(styles);
-  const state = useContext(GlobalStore);
+  const state: any = useContext(GlobalStore);
 
-  //   useTask$(({ track }) => {
-  //     track = () => isDark.value;
-  //   });
-  useOnDocument(
-    "DOMContentLoaded",
-    $(() => {
-      const themeCach = sessionStorage.getItem("theme");
-      const htmlClassList: DOMTokenList = (
-        document.querySelector("html") as HTMLElement
-      )?.classList;
-      if (themeCach === "dark") {
-        // theme.isDark = true;
-        htmlClassList.add("dark");
-      } else {
-        // theme.isDark = false;
-        htmlClassList.remove("dark");
-      }
-    })
-  );
+  useVisibleTask$(() => {
+    state.theme = localStorage.getItem('theme-preference');
+  });
+  const onClick$ = $(() => {
+    state.theme = state.theme === LIGHT_THEME ? DARK_THEME : LIGHT_THEME;
+    setPreference(state.theme);
+  });
   return (
-    <label class="switch">
-      <input
-        type="checkbox"
-        // checked={state.theme === 'dark'}
-        onChange$={() => themeChange(state)}
-      />
-      <span class="slider"></span>
-    </label>
+    <div onClick$={onClick$}>
+      {state.theme}
+      {/* <label class="switch">
+        <input id="theme-switch" type="checkbox" onChange$={onClick$} />
+        <span class="slider"></span>
+      </label> */}
+    </div>
   );
 });

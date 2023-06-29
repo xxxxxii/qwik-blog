@@ -2,13 +2,18 @@
 .switch {
   --width-of-switch: 3em;
   --height-of-switch: 1.5em;
-  /* size of sliding icon -- sun and moon */
+  /*sizeofslidingicon--sunandmoon*/
   --size-of-icon: 1.3em;
-  /* it is like a inline-padding of switch */
+  /*itislikeainline-paddingofswitch*/
   --slider-offset: 0.28em;
   position: relative;
   width: var(--width-of-switch);
   height: var(--height-of-switch);
+  transition: background, box-shadow var(0.2s, 0.2s) ease-in-out;
+  -webkit-transition: background, box-shadow var(0.2s, 0.2s) ease-in-out;
+  -moz-transition: background, box-shadow var(0.2s, 0.2s) ease-in-out;
+  -ms-transition: background, box-shadow var(0.2s, 0.2s) ease-in-out;
+  -o-transition: background, box-shadow var(0.2s, 0.2s) ease-in-out;
 }
 
 /* Hide default HTML checkbox */
@@ -27,8 +32,12 @@
   right: 0;
   bottom: 0;
   background-color: #f4f4f5;
-  transition: 0.4s;
+  /* transition: 0.4s; */
   border-radius: 30px;
+  /* -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s; */
 }
 
 .slider:before {

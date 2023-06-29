@@ -2,7 +2,7 @@
  * @Author: yulinZ 1973329248@qq.com
  * @Date: 2023-06-26 22:07:46
  * @LastEditors: Please set LastEditors
- * @LastEditTime: 2023-06-28 13:36:34
+ * @LastEditTime: 2023-06-29 17:02:32
  * @FilePath: \qwik-app\src\routes\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -14,12 +14,12 @@
  * @FilePath: \qwik-app\src\routes\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { component$, useOnWindow, useStore, $ } from "@builder.io/qwik";
-import { type DocumentHead, routeLoader$ } from "@builder.io/qwik-city";
+import { component$, useStore } from '@builder.io/qwik';
+import { type DocumentHead, routeLoader$ } from '@builder.io/qwik-city';
 
-import ArcCard from "~/components/arc-card/arc-card";
-import dayjs from "dayjs";
-import { getData } from "~/api";
+import ArcCard from '~/components/arc-card/arc-card';
+import dayjs from 'dayjs';
+import { getData } from '~/api';
 
 export const useData = routeLoader$(async () => {
   // sessionStorage.getItem("pageInfo");
@@ -39,7 +39,7 @@ const handlerNextPage = (state: any) => {
 
 // update list
 const updateList = async (state: any) => {
-  sessionStorage.setItem("pageInfo", JSON.stringify(state.pageInfo));
+  sessionStorage.setItem('pageInfo', JSON.stringify(state.pageInfo));
   const result = await getData(state.pageInfo);
   const res = (await result.json()) as {
     data: [];
@@ -64,20 +64,7 @@ export default component$(() => {
       page: 1,
     },
   });
-  // useOnWindow(
-  //   "load",
-  //   $(() => {
-  //     if (window.innerWidth < 1200) {
-  //       const pageInfo = JSON.parse(
-  //         sessionStorage.getItem("pageInfo") as string
-  //       );
-  //       if (pageInfo) {
-  //         store.pageInfo = pageInfo;
-  //         updateList(store);
-  //       }
-  //     }
-  //   })
-  // );
+
   return (
     <>
       <div class="">
@@ -91,12 +78,12 @@ export default component$(() => {
                 wordsCount={item?.content.length}
                 isTop={item?.type == 5}
                 img={item?.img}
-                dateTime={dayjs(item?.createdAt).format("YYYY-MM-DD")}
-                updateTime={dayjs(item?.updateAt).format("YYYY-MM-DD")}
+                dateTime={dayjs(item?.createdAt).format('YYYY-MM-DD')}
+                updateTime={dayjs(item?.updateAt).format('YYYY-MM-DD')}
                 group={item?.group}
                 labels={item?.labels}
                 onClick$={() => {
-                  window.location.href = "./article/" + item?.id;
+                  window.location.href = './article/' + item?.id;
                 }}
               />
             </div>
@@ -107,26 +94,15 @@ export default component$(() => {
           共 {store.list.value.total} 篇，
           <button
             disabled={store.pageInfo.page > 1 ? false : true}
-            class={["page-type", store.pageInfo.page > 1 ? "" : "no-drop"]}
+            class={['page-type', store.pageInfo.page > 1 ? '' : 'no-drop']}
             onClick$={() => handlerPrePage(store)}
           >
             上一页
           </button>
           当前 {store.pageInfo.page} 页
           <button
-            disabled={
-              store.pageInfo.page <
-              store.list.value.total / store.pageInfo.pageSize
-                ? false
-                : true
-            }
-            class={[
-              "page-type",
-              store.pageInfo.page <
-              store.list.value.total / store.pageInfo.pageSize
-                ? ""
-                : "no-drop",
-            ]}
+            disabled={store.pageInfo.page < store.list.value.total / store.pageInfo.pageSize ? false : true}
+            class={['page-type', store.pageInfo.page < store.list.value.total / store.pageInfo.pageSize ? '' : 'no-drop']}
             onClick$={() => handlerNextPage(store)}
           >
             下一页
@@ -138,15 +114,15 @@ export default component$(() => {
 });
 
 export const head: DocumentHead = {
-  title: "Welcome to yulinZ blogs",
+  title: 'Welcome to yulinZ blogs',
   meta: [
     {
-      name: "description",
-      content: "该博客主要记录日常开发问题及解决方法，",
+      name: 'description',
+      content: '该博客主要记录日常开发问题及解决方法，',
     },
     {
-      name: "keywords",
-      content: "yulinZ web 前后端 blog ",
+      name: 'keywords',
+      content: 'yulinZ web 前后端 blog ',
     },
   ],
 };

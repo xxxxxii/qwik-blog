@@ -12,4 +12,21 @@ export default extendConfig(baseConfig, () => {
     },
     plugins: [nodeServerAdapter({ name: 'express' })],
   };
+  // return {
+  //   build: {
+  //     ssr: true,
+  //     rollupOptions: {
+  //       input: ['src/entry.express.tsx', '@qwik-city-plan'],
+  //     },
+  //   },
+  //   plugins: [
+  //     nodeServerAdapter({
+  //       name: 'express',
+  //       ssg: {
+  //         origin: `https://${process.env.DOMAIN}`,
+  //         include: [],
+  //       },
+  //     }),
+  //   ],
+  // };
 });
