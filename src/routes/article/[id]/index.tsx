@@ -17,6 +17,7 @@ import markdownIt from "markdown-it";
 import hljs from "highlight.js";
 import toc from "markdown-it-toc-done-right";
 import anchor from "markdown-it-anchor";
+import {on} from "../../../utils/dom"
 
 const useData = routeLoader$(async (requestEvent) => {
   let response: any = null;
@@ -47,6 +48,49 @@ export default component$(() => {
       }
     })
   );
+
+
+  useOnDocument('mousedown',$((event:Event)=>{
+ 
+    const target = event.target as HTMLElement;
+
+    const e = event as Event
+    function move(e){            
+      e = e || window.event            
+      var left = e.clientX - BoxX            
+      var top = e.clientY - BoxY            
+      Box.style.left = left + 'px'            
+      Box.style.top = top + 'px'            
+      //限制左上角边缘距离            
+      if(left<=0){                
+          left=0;            
+      }            
+      Box.style.left = left + "px"            
+      if(top<=0){                
+          top=0            
+      }           
+      Box.style.top = top + "px"            
+      //限制右下角边缘距离            
+      var maxL = window.innerWidth - Box.offsetWidth;            
+      var maxT = window.innerHeight - Box.offsetHeight;            
+      if(left>=maxL){                
+          left = maxL;            
+      }            
+      Box.style.left = left + "px"            
+      if(top>=maxT){                
+          top = maxT;            
+      }            
+      Box.style.top = top + "px"       
+  }  
+      // 点击的是目录按钮
+      if (target.className === "toc-btn") {
+        // e = e || window.event// 获取事件对象                
+        const BoxX = e.offsetX// 获取鼠标点击时到div的顶部和左边的距离         
+        const BoxY = e.offsetY       
+        console.log(BoxX,BoxY)
+        // on(document,'mousemove',move) 
+      }
+  }))
 
   useOnDocument(
     "click",
