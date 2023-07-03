@@ -40,6 +40,8 @@ body {
   /* Theme switcher shadow */
   --handleoffset: 1.5rem;
   --t-sh: var(--handleoffset) 0 0 2px hsl(var(--ts-bg)) inset, 0 0 0 2px hsl(var(--ts-bg)) inset;
+  --qwik-background: #2b2b2b;
+  --qwik-dark-text: #ffffff;
 }
 
 [data-theme='light'] {
