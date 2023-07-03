@@ -90,10 +90,10 @@ ul {
 /* BUTTONS -------------------------------------- */
 a.button,
 button {
-  background: var(--qwik-light-blue);
+  /* background: var(--qwik-light-blue); */
   border: none;
   border-radius: 8px;
-  color: white;
+  /* color: white; */
   cursor: pointer;
   font-size: 0.8rem;
   padding: 15px 20px;
@@ -102,7 +102,7 @@ button {
 
 a.button.button-dark,
 button.button-dark {
-  background: var(--qwik-dirty-black);
+  /* background: var(--qwik-dirty-black); */
   color: white;
   font-size: 0.8rem;
   padding: 15px 20px;
